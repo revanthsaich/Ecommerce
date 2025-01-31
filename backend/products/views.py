@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from rest_framework.permissions import IsAuthenticated
 from .models import Products
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view,permission_classes
 from .serializers import ProductSerializer
 
 # Create your views here.
@@ -26,6 +26,7 @@ class ProductListView(APIView):
 
 
 @api_view(['GET'])    
+# @permission_classes([IsAuthenticated])
 def get_featured_products(request):
     featured_products = Products.objects.filter(featured=True)
     serializer = ProductSerializer(featured_products, many=True)

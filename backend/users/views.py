@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import authenticate, login
 from .serializers import UserSerializer
+from .models import User
 # Create your views here.
 class RegisterView(APIView):
     def post(self, request):
@@ -14,11 +15,12 @@ class RegisterView(APIView):
     
 class LoginView(APIView):
     def post(self, request):
-        username=request.data.get('username')
-        email=request.data.get('email')
-        password=request.data.get('password')
-        user=authenticate(username=username, email=email, password=password)
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        # Authenticate the user using the username and password
+        user = authenticate(username=username, password=password)
         if user:
             login(request, user)
-            return Response({'message':'User logged in succesfuly'}, status=status.HTTP_200_OK)
-        return Response({'message':'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'message': 'User logged in successfully'}, status=status.HTTP_200_OK)
+        return Response({'message': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)

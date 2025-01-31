@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -60,7 +60,7 @@ ROOT_URLCONF = "backend.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR/'frontend/dist'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -80,9 +80,13 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ecom',          # Replace with your database name
+        'USER': 'postgres',              # Replace with your database user
+        'PASSWORD': '2005',      # Replace with your database password
+        'HOST': 'localhost',           # Use 'localhost' or the IP address of your database server
+        'PORT': '5432',                # Default PostgreSQL port
     }
 }
 
@@ -118,18 +122,19 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-STATIC_URL = "static/"
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',  # Use session authentication
+    ],
+}
 
 
 AUTH_USER_MODEL = 'users.User'
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_HEADERS = [
     'content-type', 'authorization',
@@ -139,3 +144,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
 
+STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     BASE_DIR / "frontend/dist/assets",  
+# ]
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
