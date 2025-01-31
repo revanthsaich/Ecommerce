@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+
 import dj_database_url
 from pathlib import Path
 import os
@@ -26,7 +27,7 @@ SECRET_KEY = "django-insecure-56t&6t5+6fa7i+7tr0o-3bjnby9p%9@w)k2o&_+xb7(pvj1y5h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["ecommerce-backend-yv9f.onrender.com"]
 
 
 # Application definition
@@ -91,8 +92,6 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # }
 
 
-import dj_database_url
-import os
 
 DATABASES = {
     'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))
@@ -149,7 +148,7 @@ CORS_ALLOW_HEADERS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
+    "http://localhost:5173","ecommerce-backend-yv9f.onrender.com",
 ]
 
 
