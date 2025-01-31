@@ -148,7 +148,9 @@ CORS_ALLOW_HEADERS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173","https://ecommerce-backend-yv9f.onrender.com","https://ecom-frontend-nine-woad.vercel.app/",
+    "http://localhost:5173",
+    "https://ecommerce-backend-yv9f.onrender.com",  # Backend URL (ensure https://)
+    "https://ecom-frontend-nine-woad.vercel.app",  # Frontend URL (no path or trailing slash
 ]
 
 
