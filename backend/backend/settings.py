@@ -79,15 +79,23 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'ecom',          # Replace with your database name
+#         'USER': 'postgres',              # Replace with your database user
+#         'PASSWORD': '2005',      # Replace with your database password
+#         'HOST': 'localhost',           # Use 'localhost' or the IP address of your database server
+#         'PORT': '5432',                # Default PostgreSQL port
+#     }
+# }
+
+
+import dj_database_url
+import os
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ecom',          # Replace with your database name
-        'USER': 'postgres',              # Replace with your database user
-        'PASSWORD': '2005',      # Replace with your database password
-        'HOST': 'localhost',           # Use 'localhost' or the IP address of your database server
-        'PORT': '5432',                # Default PostgreSQL port
-    }
+    'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))
 }
 
 
