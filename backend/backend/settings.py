@@ -152,7 +152,11 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
 
-STATIC_URL = '/static/'
+
+
+STATIC_URL = '/static/'  # Default static URL
+STATIC_ROOT = BASE_DIR / "staticfiles"
+# STATIC_URL = '/static/'
 # STATICFILES_DIRS = [
 #     BASE_DIR / "frontend/dist/assets",  
 # ]
